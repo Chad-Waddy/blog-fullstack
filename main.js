@@ -20,7 +20,7 @@ function showPostWebView(item ={}){
                         </div>
                     </div>
                 </div>
-    kkkkkkkk
+   
     `;
     postEl.appendChild(div);
             
