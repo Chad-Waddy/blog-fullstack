@@ -1,11 +1,12 @@
 import {getPosts} from "./post.js";
+
 // const API_URL ="https://efkxfholvuobcwnoibii.supabase.co/rest/v1";
 const postEl = document.querySelector('#posts');
 // const API_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVma3hmaG9sdnVvYmN3bm9pYmlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY2OTA2OTEsImV4cCI6MjA0MjI2NjY5MX0.pKPzriTg9s6bJHbBsgjMYaKtEhVQS1JcXyXeObKTUD4"
            
-// console.log(API_KEY)
-console.log(fetch)
-console.log(showPostWebView)
+// // console.log(API_KEY)
+// console.log(fetch)
+// console.log(showPostWebView)
  
 
 getPosts()
@@ -26,6 +27,7 @@ function showPostWebView(item ={}){
                         <p>${item['content']}</p>
                         <div class="card-actions justify-end">
                             <button class="btn btn-primary">Read More</button>
+                            <button class="btn btn-error">delete</button>
                         </div>
                     </div>
                 </div>
@@ -33,8 +35,34 @@ function showPostWebView(item ={}){
     `;
     postEl.appendChild(div);
             
-            console.log(fetch);
+            // console.log(fetch);
   }
+  export async function addPost(newPost = {}) {
+    const { data, error } = await supabase
+      
+    .from('allpost')
+    .insert([
+      { Tittle: `${title}`, Author: `${author}`, content: `${content}` },
+    ])
+    .select()
+              
+    // testing the JS script 
+      document.querySelector('#add-post').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent the default form submission
+      
+        // Get the values from the input fields
+        const title = document.getElementById('title').value;
+        const author = document.getElementById('author').value;
+        const content = document.getElementById('content').value;
+      
+        // You can now use these values as needed
+        console.log(title, author, content);
+
+        
+      })};
+
+  
+
   // fetch(`${API_URL}/allpost?select=*&apikey=${API_KEY}`)
   //  .then(response => response.json())
   // .then(response => {
@@ -46,4 +74,14 @@ function showPostWebView(item ={}){
 curl 'https://efkxfholvuobcwnoibii.supabase.co/rest/v1/allpost?select=*' \
 -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVma3hmaG9sdnVvYmN3bm9pYmlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY2OTA2OTEsImV4cCI6MjA0MjI2NjY5MX0.pKPzriTg9s6bJHbBsgjMYaKtEhVQS1JcXyXeObKTUD4" \
 -H "Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImVma3hmaG9sdnVvYmN3bm9pYmlpIiwicm9sZSI6ImFub24iLCJpYXQiOjE3MjY2OTA2OTEsImV4cCI6MjA0MjI2NjY5MX0.pKPzriTg9s6bJHbBsgjMYaKtEhVQS1JcXyXeObKTUD4"
-           */
+           
+
+const { data, error } = await supabase
+  .from('allpost')
+  .insert([
+    { some_column: 'someValue', other_column: 'otherValue' },
+  ])
+  .select()
+          
+
+*/

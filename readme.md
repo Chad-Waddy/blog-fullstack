@@ -79,7 +79,7 @@ graph TD
 ### Features
 
 - [x] All readers to see all posts
-- [x] All users to add a new post - (TODO v1)
+- [ ] All users to add a new post - (TODO v1)
 - [ ] All users to delete a post
     - [ ] When hits "delete" button from each post (frontend)
     - [ ] remove the post from supabase (backend)
