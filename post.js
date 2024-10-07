@@ -1,5 +1,5 @@
-import supabase from "./config.js"
-import { createClient } from '@supabase/supabase-js';
+import {supabase} from "./config.js"
+
 export async function getPosts(){
     let {data,error} = await supabase
     .from('allpost')
@@ -17,20 +17,26 @@ export async function getPosts(){
 
 export async function addPost(newPost = {}) {
     try {
-      if (!newPost.title || !newPost.content) throw new Error('Title and content required');
   
       const { data, error } = await supabase
-        .from('posts')
-        .insert({ ...newPost, created_at: new Date().toISOString() })
+        .from('allpost')
+        .insert(newPost)
+      
+// console.log(data) 
+// console.log(newPost)
+
+        // forgot the data call ...
         .select();
-  
+        // if (!newPost.title || !newPost.content) throw new Error('Title and content required');
+       
       if (error) throw error;
       return data[0];
-    } catch (error) {
+    }
+     catch (error) {
       console.error('Error adding post:', error.message);
       return { error: error.message, type: error.name };
     }
   }
-
+  
 export function deletePost(id){return `deleting post with ${id}`};
 export function updatePost(id, content){return `updating post with ${id}`};
